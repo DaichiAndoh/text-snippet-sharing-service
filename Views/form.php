@@ -1,14 +1,20 @@
-<div id="editor-container" style="width:800px;height:500px;border:1px solid grey"></div>
+<div style="width: 800px; margin: 0 auto;">
+    <h5>new snippet</h5>
 
-<div id="form" style="margin-top: 10px; display: none;">
-    <select id="language-selector">
-    </select>
-    <select id="expiration-selector">
-        <option value="10minutes">10 minutes</option>
-        <option value="1hour">1 hour</option>
-        <option value="1day">1 day</option>
-    </select>
-    <button id="create-url-btn">Craete URL</button>
+    <div id="editor-container" style="width:800px;height:400px;border:1px solid grey"></div>
+
+    <div id="form" style="margin-top: 10px; display: none;">
+        <label for="language-selector">Language:</label>
+        <select id="language-selector">
+        </select><br>
+        <label for="expiration-selector" style="margin: 6px 0;">Expiration:</label>
+        <select id="expiration-selector">
+            <option value="10minutes">10 minutes</option>
+            <option value="1hour">1 hour</option>
+            <option value="1day">1 day</option>
+        </select><br>
+        <button id="create-url-btn">Craete New Snippet</button>
+    </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.48.0/min/vs/loader.min.js" integrity="sha512-ZG31AN9z/CQD1YDDAK4RUAvogwbJHv6bHrumrnMLzdCrVu4HeAqrUX7Jsal/cbUwXGfaMUNmQU04tQ8XXl5Znw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
