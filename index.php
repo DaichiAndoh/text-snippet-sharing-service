@@ -8,14 +8,18 @@ $DEBUG = true;
 $routes = include('Routing/routes.php');
 
 // リクエストURIを解析してパスだけを取得
-$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$originalPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$path = $originalPath;
+if (preg_match_all('/\/share\/.+/', $path)) {
+    $path = '/share';
+}
 
 // ルートにパスが存在するかチェック
 if (isset($routes[$path])) {
     // コールバックを呼び出してrendererを作成
-    $renderer = $routes[$path]();
-
     try{
+        $renderer = $routes[$path]($originalPath);
+
         // ヘッダーを設定
         foreach ($renderer->getFields() as $name => $value) {
             // ヘッダーの検証
@@ -40,5 +44,5 @@ if (isset($routes[$path])) {
 } else {
     // マッチするルートがない場合、404エラーを表示
     http_response_code(404);
-    echo "404 Not Found: The requested route was not found on this server. {$path}";
+    echo "{$originalPath} - 404 Not Found: The requested route was not found on this server.";
 }

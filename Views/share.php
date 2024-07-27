@@ -5,8 +5,8 @@
     require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.48.0/min/vs' }});
     require(['vs/editor/editor.main'], function() {
         monaco.editor.create(document.getElementById('editor-container'), {
-            value: 'sample snippet',
-            language: 'plaintext',
+            value: `<?= str_replace('`', '\`', $snippet['content']) ?>`,
+            language: '<?= $snippet['language'] ?>',
             readOnly: true,
         });
     });

@@ -1,9 +1,14 @@
 <div id="editor-container" style="width:800px;height:500px;border:1px solid grey"></div>
 
-<div id="select-btn-wrapper" style="margin-top: 10px; display: none;">
+<div id="form" style="margin-top: 10px; display: none;">
     <select id="language-selector">
     </select>
-    <button id="create-url-btn">Create URL</button>
+    <select id="expiration-selector">
+        <option value="10minutes">10 minutes</option>
+        <option value="1hour">1 hour</option>
+        <option value="1day">1 day</option>
+    </select>
+    <button id="create-url-btn">Craete URL</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.48.0/min/vs/loader.min.js" integrity="sha512-ZG31AN9z/CQD1YDDAK4RUAvogwbJHv6bHrumrnMLzdCrVu4HeAqrUX7Jsal/cbUwXGfaMUNmQU04tQ8XXl5Znw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -29,10 +34,28 @@
 
         const btnEl = document.getElementById('create-url-btn');
         btnEl.addEventListener('click', _ => {
-            console.log('clicked!');
+            const language = document.getElementById('language-selector').value;
+            const expiration = document.getElementById('expiration-selector').value;
+
+            fetch('/create', {
+                method: 'POST',
+                body: JSON.stringify({
+                    content: editor.getValue(),
+                    language,
+                    expiration,
+                }),
+            }).then(res => {
+                return res.json();
+            }).then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    window.open(`http://localhost:8000/share/${data.urlKey}`);
+                }
+            });
         });
 
-        const wrapperEl = document.getElementById('select-btn-wrapper');
-        wrapperEl.style.display = 'block';
+        const formEl = document.getElementById('form');
+        formEl.style.display = 'block';
     });
 </script>
