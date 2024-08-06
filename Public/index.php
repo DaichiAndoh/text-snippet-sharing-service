@@ -1,11 +1,14 @@
 <?php
 spl_autoload_extensions(".php");
-spl_autoload_register();
+spl_autoload_register(function($name) {
+    $filepath = __DIR__ . "/../" . str_replace('\\', '/', $name) . ".php";
+    require_once $filepath;
+});
 
 $DEBUG = true;
 
 // ルートの読み込み
-$routes = include('Routing/routes.php');
+$routes = include('../Routing/routes.php');
 
 // リクエストURIを解析してパスだけを取得
 $originalPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
