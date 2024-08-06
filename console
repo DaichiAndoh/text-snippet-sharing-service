@@ -1,9 +1,12 @@
 <?php
 
 spl_autoload_extensions(".php");
-spl_autoload_register();
+spl_autoload_register(function($name) {
+    $filepath = __DIR__ . "/" . str_replace('\\', '/', $name) . ".php";
+    require_once $filepath;
+});
 
-$commands = include "Commands/registry.php";
+$commands = include "Database/Migrator/Commands/registry.php";
 
 // 第2引数は実行するコマンド
 $inputCommand = $argv[1];

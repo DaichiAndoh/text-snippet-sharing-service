@@ -1,3 +1,8 @@
+<?php
+use Helpers\Settings;
+$url = Settings::env('URL');
+?>
+
 <div style="width: 800px; margin: 0 auto;">
     <h5>new snippet</h5>
 
@@ -56,7 +61,7 @@
                 if (data.error) {
                     alert(data.error);
                 } else {
-                    window.open(`http://localhost:8000/share/${data.urlKey}`);
+                    window.open(`<?php echo $url ?>/share/${data.urlKey}`);
                 }
             });
         });
