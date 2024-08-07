@@ -35,12 +35,24 @@ https://ts3.d-andoh.com
 
 ### Set Up
 
-1. DB初期化, ローカルサーバー起動
+1. DB初期化
 
 ```
-$ cd text-snippet-sharing-service
 $ php console migrate -i
-$ php -S localhost:8000
+```
+
+2. 環境変数設定
+
+`.env.template` から `.env` を作成し、環境変数値を設定します。
+
+```
+$ cp .env.template .env
+```
+
+3. ローカルサーバー起動
+
+```
+$ php -S localhost:8000 -t Public
 ```
 
 ### Database Migration
