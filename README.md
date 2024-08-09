@@ -35,18 +35,18 @@ https://ts3.d-andoh.com
 
 ### Set Up
 
-1. DB初期化
-
-```
-$ php console migrate -i
-```
-
-2. 環境変数設定
+1. 環境変数設定
 
 `.env.template` から `.env` を作成し、環境変数値を設定します。
 
 ```
 $ cp .env.template .env
+```
+
+2. DB初期化
+
+```
+$ php console migrate -i
 ```
 
 3. ローカルサーバー起動
