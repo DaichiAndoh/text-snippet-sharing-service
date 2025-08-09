@@ -8,7 +8,10 @@
 
 ## URL
 
-https://ts3.d-andoh.com
+> [!WARNING]
+> 現在このURLは無効です。
+
+ ~~https://ts3.d-andoh.com~~
 
 ## About
 
